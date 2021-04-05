@@ -89,17 +89,17 @@ def get_datas(links):
         'Series': series,
         'manufacturer': manufacturer
     }
-    print("Saving : ", dict_data['Product Name'])
+    print("Saving : ", dict_data['Product Name']) 
 
 
-    file = './nendo_results/{}.json'.format(productname)
+    file = './results/{}.json'.format(productname) #you can rename folder here
     with open(file, 'w', encoding='utf-8') as outfile:
         json.dump(dict_data, outfile)
 
 def build_csv():
     print("Converting results to CSV file . . .")
 
-    files = sorted(glob.glob('./nendo_results/*.json'))
+    files = sorted(glob.glob('./results/*.json')) #folder name must be the same as line 95
     datas = []
     for file in files:
         print(file)
@@ -108,7 +108,7 @@ def build_csv():
             datas.append(data)
 
     df = pd.DataFrame(datas)
-    df.to_csv('nendo_results.csv', index=False)
+    df.to_csv('results.csv', index=False) 
     print("Output files generated!")
 
 
